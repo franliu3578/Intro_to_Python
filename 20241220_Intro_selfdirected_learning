@@ -1,0 +1,853 @@
+# Python 基礎程式設計 
+
+# 主要環境
+> 課程建議 **Python 3.9.X** 版 (避免0結尾版次)
+
+
+## 平台選用
+> **本地平台**  
+- [PyCharm](https://www.jetbrains.com/pycharm/)  
+    專業化 IDE，適合進行大型專案開發
+- [Visual Studio Code](https://code.visualstudio.com/)  
+    輕量化且靈活，支援多語言插件
+> **線上平台**  
+- [Replit](https://replit.com/)
+    適合快速測試及多人協作的線上編程工具
+- [Google Colab](https://colab.google/)
+    🚀課程使用款 
+> **大集合平台 (較雜不推薦)**   
+- [conda](https://anaconda.org/)
+- [Anaconda](https://www.anaconda.com/)
+
+
+# 章節一
+## 型態
+> **數字**
+- **整數 (integer)**: 
+    - int(60) = `60`
+- **小數 (float)**: 
+    - float(60) = `60.0`
+> **字串**
+- 雙引號 (`"`)、單引號 (`'`)。
+    - str()=`"hello"`
+
+## BMI 計算
+1. **功能**：輸入身高與體重，計算 BMI 並顯示結果
+2. **重點**：
+   - **使用型態**：
+     - 整數 (int) 
+         - int(2) = `2`
+     - 浮點數 (float)
+         - float(2) = `2.0`
+     - 字串 (str)：如 `"xxx"`, 任意符號皆為字串
+        - `"hello"`
+   - **條件判斷 (if/else)**：
+     - 確保 `if`、`else` 縮排對齊
+   - **輸入處理**：
+     -  `input()` 輸入資料，預設為字串 str()
+   - **浮點數處理**：
+     - 使用 `float()` 將輸入的字串轉換為浮點數
+     - 確保回傳值型態正確，以進行後續計算
+   - 使用 `print()` 函數輸出結果
+
+### 範例程式碼
+```python=
+# 複習_python影片_3.BMI程式
+# BMI : weight(kg) / height(m) ^ 2
+# input 輸入體重後變成是字串, float(浮點數轉換)
+weight = float(input("請輸入體重(kg):"))
+# input 輸入身高後變成字串, float(浮點樹轉換)
+height = float(input("請輸入身高(cm):"))
+# BMI 就是體重除以身高平方
+bmi = weight / (height / 100) ** 2
+# 印出你的體重+weight, 目前是浮點數, str(字串轉換)
+print("你的體重是(kg):" + str(weight))
+print("你的高度是(cm):" + str(height))
+print("bim是:" + str(bmi))
+# 如果bim大於25, 印出過重
+if bmi > 25 :
+  print('過重')
+  print('少吃多動')
+# 否則如何bim小於等於24且大於18.5, 印出正常 
+elif bmi <= 24 and bmi > 18.5 :
+  print('正常')
+# 否則 印出過輕
+else:
+  print('過輕')
+```
+
+### 補充資料
+> LaTex Math 排版數學
+- [維基百科](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+> 官網 - 排版標準
+- [Pep coding style](https://peps.python.org/pep-0008/)
+
+
+
+
+
+# 章節二
+## 型態
+> **數字 (Numeric)**
+- **整數 (integer)**: 
+    - int(2) = `2`
+> **字串(String)**
+- 雙引號 (`"`)、單引號 (`'`)。
+    - str()=`"hello"`
+> **清單(List)**
+- tran[0,1,2]=`["剪刀", "石頭", "布"]`
+
+## 剪刀石頭布程式
+1. **功能**：模擬與電腦對戰，輸入判斷並顯示勝負
+2. **重點**：
+    - **邏輯規劃**：
+        - 撰寫程式前，先清晰設計邏輯流 (前面<後面<後後面)
+    - **模組介紹**：
+         - `import random` 引入隨機模組.py檔
+         - 使用 `random.randint` 隨機的整數的函數
+    - **輸入處理**：
+        -  `input()` 輸入資料，預設為字串 str()
+    - **字典查詢 (key-value)**：
+         - 利用 key 查詢 value，快速檢索所需內容
+    - **條件判斷 (if/elif/else)**：
+         - else 否則可以省略
+    - 取餘數 取商數
+
+### 範例程式碼
+```python=
+# 複習_python影片_4.剪刀石頭布
+# 剪刀石頭布 : 前者大於後
+# 剪刀 < 石頭 < 布
+
+# 匯入隨機模組
+import random
+
+# input 輸入後my變成是字串, int整數型態轉換
+my = int(input("請輸入: 0.剪刀 1.石頭 2.布"))
+# 電腦 random.randint 隨機產生一個0~2的數字 
+com = random.randint(0, 2)
+# 創造一個清單, trans[0]=剪刀, trans[1]=石頭, trans[2]=布 
+trans = ["剪刀", "石頭", "布"]
+print ("我出拳:", trans[my])
+print ("電腦出拳:", trans[com])
+
+# >, >=, <, <=, ==
+# 如果我的選擇是電腦的下一個就贏了, %取餘, 目地為0~2循環
+# 想要把值控制在範圍內, 0~2, 所以就是設定%取餘數3, 6%3就會變成0
+if my == (com + 1) % 3:
+  print("u win 贏了")
+# 否則如果電腦的選擇是我的下一個 
+elif com == (my + 1) % 3:
+  print("u lose 輸了")
+# 否則平手
+else:
+  print("we even 平手")
+# 迴圈最外面的 甚麼時候都會印
+print("結束!!!!")
+```
+
+### 補充資料
+> 官網 - 模組
+- [隨機整數 random.randint](https://docs.python.org/zh-tw/3/library/random.html)
+> 官網 - 函數
+- [內建函數](https://docs.python.org/3/library/functions.html)
+
+
+## 作業；六個兩組, 剪刀石頭布程式
+1. **功能**：模擬六個數字分兩組剪刀石頭布遊戲，判斷同組勝負或不同組平手
+2. **重點**：
+    - 數字分組：
+        - 取商 (`// 3`) 判斷分組：
+            - `0-2` 是 **Group 0**，`3-5` 是 **Group 1**
+        - 取餘 (`% 3`) 將數字迴圈至 `0-2` 
+
+    - 判斷邏輯：
+        - 同組：使用剪刀石頭布規則判斷勝負：
+            - `(com2 + 1) % 3`：玩家勝
+            - `(my2 + 1) % 3`：電腦勝
+        - 不同組：直接平手。
+
+### 範例程式碼
+```python=
+# 作業練習: 六個數字兩種玩法 - 0 1 2 3 4 5
+# 匯入隨機模組
+import random
+
+# 我輸入0~5改型態變成整數
+# my = int(input("0-5:"))
+# 電腦就是隨機的0~5
+# com = random.randint(0, 5)
+# 用清單分組, 0一組, 1一組
+# 準備一個清單, 把原本的0~5換成中文
+trans = ["剪刀(0)", "石頭(0)", "布(0)",
+     "剪刀(1)", "石頭(1)", "布(1)"]
+print("你出的:", trans[my],
+   "電腦的:", trans[com])
+# 取商 : 分組, 取商就是整數除,又稱mod
+# 0 // 3 : 0
+# 1 // 3 : 0
+# 2 // 3 : 0
+# 3 // 3 : 1
+# 4 // 3 : 1
+# 5 // 3 : 1
+# 取餘 : 循環, 回歸到0~2
+# 0 % 3 : 0
+# 1 % 3 : 1
+# 2 % 3 : 2
+# 3 % 3 : 0
+# 4 % 3 : 1
+# 5 % 3 : 2
+
+my = 5
+com = 3
+# 第一步 先確定他們是否同組
+# 分組:取商(0-2:屬於 Group0, 3-5:屬於 Group1)
+mygroup = my // 3
+comgroup = com // 3
+# 如果同一組就執行
+if mygroup == comgroup:
+    # 取餘 : 循環, 回歸到0~2
+    my2 = my % 3
+    com2 = com % 3
+    # 確認轉換是否成功
+    # print(my, com, my2, com2)
+    # 替換名稱, 走原本剪刀石頭布的循環
+    if my2 == (com2 + 1) % 3:
+      print("win")
+    elif com2 == (my2 + 1) % 3:
+      print("lose")
+    else:
+      print("even")
+else:
+  print("平手(不同組)")
+```
+
+
+# 章節三_迴圈
+## 基本迴圈程式
+1. **功能**：使用迴圈進行計算，每次用此公式
+2. **重點**：
+    - **邏輯規劃**：
+        - 萬年公式 
+        `i = 0` 
+        `while i < 10` 
+        `i = i + 1`
+
+### 範例程式碼
+```python=
+# 迴圈計數器, 計數十次
+i = 0 # 計數器初始化
+while i < 10: # 總共迴圈幾次
+i = i + 1 # 計數器增加1次
+# 想印出1~10 
+print(i+1)
+# 想印出10~1
+print(10-1)
+# 想印出1 3 5 7
+print(2*i+1)
+# 舉例間格為3, 8開始數
+# 間格為3*i+從8開始
+print(3*i+8)
+```
+
+## 延伸題目
+
+### 練習1.靠左三角形
+```python=
+# 延伸練習題1:畫靠左邊的三角形
+i = 0
+# 層數是可以變動的
+layer = 4
+# 總共迴圈幾層次
+while i < layer:
+    # 乘以i, 會從0開始, 所以要+1, 才會從1開始
+    # 左邊的圖
+    # 右邊的區塊是, 從1開始遞增1
+    right_count = i + 1
+    # 要畫的符號, 跟右邊的區塊 
+    print("x" * right_count) 
+    # 計數器增加1次
+    i = i + 1
+```
+
+### 練習2.靠右三角形
+```python=
+# 延伸練習題2:畫靠右邊的三角形
+i = 0
+# 層數是可以變動的
+layer = 4
+# 清單有兩種符號
+left, right=" ","x"
+# 總共迴圈幾層次
+while i < layer:
+    # 印出清單[0]遞減, 第一排列印幾個,印出清單[1]遞增
+    # 左邊的區塊是, 從4開始遞減1
+    left_count = layer - i 
+    #  右邊的區塊是, 從1開始遞增1
+    right_count = i + 1 
+    # 要畫的符號, 跟左右邊的區塊
+    print(left * left_count +
+       right * right_count) 
+    i = i + 1
+```
+
+### 練習3.倒金字塔
+```python=
+# 延伸練習題3:畫倒金字塔
+# 邏輯思考延伸
+# 3層:5個
+# 4層:7個
+# 5層:9個
+i = 0
+layer = 3
+left, mid , right=" ","x"," "
+while i < layer:
+    # 左邊的區塊是, 從1開始遞增1
+    left_count = i + 1
+    # 中間的區塊是, 從五開始間隔2遞減 
+    mid_count = (layer * 2 - 1) - 2 * i
+    # 右邊的區塊是, 從1開始遞增1 
+    right_count = i + 1
+    # 要畫的符號, 跟左中右邊的區塊 
+    print(left * left_count +
+       mid * mid_count +
+       right * right_count) 
+    i = i + 1
+```
+
+### 練習4:正金字塔
+```python=
+# 延伸練習題4:畫正金字塔
+i = 0
+layer = 3
+left, mid , right=" ","x"," "
+while i < layer:
+    # 從3開始遞減1
+    left_count = layer - i 
+    # 從1開始間隔2遞增
+    mid_count = 2*i+1 
+    # 從3開始遞減1
+    right_count = layer - i 
+    # 要畫的符號, 跟左中右邊的區塊
+    print(left * left_count +
+       mid * mid_count +
+       right * right_count) 
+    i = i + 1
+```
+
+
+
+
+
+# 章節四_迴圈
+## 記憶迴圈程式
+
+
+1. **功能**：使用迴圈進行計算，將數字依次加總，最後輸出總和
+2. **重點**：
+    - **邏輯規劃**：
+        - 萬年公式 
+        `i = 0` 
+        `while i < 10` 
+        `i = i + 1`
+### 範例程式碼
+```python=
+# 複習_python影片_6.迴圈第二章
+# 準備加總
+total = 0 
+i = 0
+while i < 10:
+  # 目前加總 = 前次加總+ 這次的i+1
+  total = total + (i + 1) 
+  print(total)
+  i = i + 1
+print("!!!",total)
+```
+
+## 除法程式
+1. **功能**：模擬手算除法，逐位計算小數點後 10 位並輸出
+
+### 範例程式碼
+```python=
+# 二除以七等餘, 2 / 7 -> 0.2857142857
+# a 除以 b
+a, b = 3, 5
+# 先把小數點用字串列出來 
+ans = "0."  
+i = 0
+while i < 10:
+  # 2 -> 20, 乘以10
+  a10 = a * 10
+  # 20 // 7, 取商
+  ans = ans + str(a10 // b)
+  # 20 % 7, 取餘
+  a = a10 % b
+  print(ans)
+  i = i + 1
+```
+
+
+## 機器人移動程式
+1. **功能**：模擬機器人根據指令移動，計算並輸出最終位置
+2. **重點**：
+    - **邏輯規劃**：
+        - 萬年公式 
+        `i = 0` 
+        `while i < 10` 
+        `i = i + 1`
+
+### 範例程式碼
+```python=
+# 機器人移動程式
+# U:上 D:下 L:左 R:右
+# 機器人位置是0,0
+x, y = 0,0
+# 六個數字用len
+# 紀錄移動用的內容 
+commands = "ULLRDL" 
+i = 0
+# 當移動內容的長度做完
+while i < len(commands):
+  # 查清單內內容
+  c = commands[i]
+  # 如果是U, Y軸增加
+  if c == "U":
+    y = y + 1
+  # 否則如果是D, Y軸減少  
+  elif c == "D":
+    y = y - 1
+  # 否則如果是L, X軸增加 
+  elif c == "L":
+    x = x + 1
+  # 否則如果是R, X軸減少   
+  elif c == "R":
+    x = x - 1
+  i = i + 1
+print("機器人目前位置為",x,",",y)
+```
+
+
+## 蒙地卡羅法計算面積程式
+1. **功能**：利用蒙地卡羅法模擬隨機點落入比例，估算圓形面積
+2. **重點**：
+    - **邏輯規劃**：
+        - 萬年公式 
+        `i = 0` 
+        `while i < 10` 
+        `i = i + 1`
+        
+### 範例程式碼
+```python=
+# 蒙地卡羅法算面積程式
+# 假設有一個半徑為2的圓形 但你不知道面積公式
+# 匯入隨機模組
+import random
+
+# 落到圓形裡面次數
+count_circle = 0
+# 總共隨機幾次迴圈
+total = 1000000
+i = 0
+# 當迴圈還沒到設定的次數
+while i < total:
+  # 對於這次隨機(x,y)
+  # 隨機x座標 -1到1之間
+  x = random.uniform(-1,1) 
+  # 隨機y座標 -1到1之間
+  y = random.uniform(-1,1) 
+  # 如果這個座標再園裡面, 累積次數增加1
+  if x ** 2 + y **2 <= 1:
+    count_circle = count_circle + 1
+  i = i + 1
+# 落到圓形裡面次數 / 全部 * 參照物面積
+ratio = count_circle / total * 4
+print("圓形面積為:",ratio)
+```
+
+### 補充資料
+> 官網 - 模組
+- [隨機浮點數 random.uniform](https://docs.python.org/zh-tw/3/library/random.html)
+
+
+
+
+
+
+# 章節五_迴圈
+## 型態
+> **布林**
+- **布林 (True/False)**: 
+    - 用中文念一遍, 使用 and / or
+
+
+## 其他迴圈程式
+1. **功能**：模擬隨機勝負迴圈，當一方先達到 3 勝結束並顯示
+
+### 範例程式碼
+```python=
+# 其他迴圈程式
+# 匯入隨機模組
+import random
+
+# 初始化贏跟輸的次數
+win, lose = 0, 0
+# 當我贏三次 而且 對手還沒輸三次 
+while win < 3 and lose < 3:
+  # -1:lose, 0:even, -1:win
+  # 隨機出-1~1的數字
+  result = random.randint(-1,1)
+  print(result)
+  # 如果隨機的數字是-1
+  if result == -1:
+    # 增加一次輸
+    lose = lose + 1
+  # 否則如果隨機的數字是1  
+  elif result == 1:
+    # 增加一次贏
+    win = win + 1
+# 如果我贏次數比輸的多, 總體我是贏的
+if win > lose:
+  print("win!")
+# 否則總體我是輸的
+else:
+  print("lose!")
+```
+
+## 無窮迴圈程式
+1. **功能**：優化版模擬隨機勝負迴圈，當一方先達到 3 勝結束並顯示
+2. **重點**：
+    - **邏輯規劃**：
+        - 使用無窮迴圈 `while True`，條件成立後 `break` 結束
+### 範例程式碼
+```python=
+# 無窮迴圈程式
+# 初始化贏跟輸的次數
+win, lose = 0, 0
+# 當迴圈成立
+while True:
+  # -1:lose 0:even -1:win
+  # 隨機出-1~1的數字
+  result = random.randint(-1,1)
+  print(result)
+  # 如果隨機的數字是-1
+  if result == -1:
+    # 增加一次輸
+    lose = lose + 1
+  # 否則如果隨機的數字是1  
+  elif result == 1:
+    # 增加一次贏
+    win = win + 1
+  # 判斷
+  # 如果贏了三次, 結束迴圈
+  if win ==3:
+    print("win!")
+    break
+  # 否則如果贏了三次, 結束迴圈  
+  elif lose ==3:
+    print("lose!")
+    break
+```
+
+## 迴圈除法程式
+1. **功能**：優化版模擬手算除法，逐位計算小數點後 10 位並輸出
+2. **重點**：
+    - **邏輯規劃**：
+        - 使用無窮迴圈 `while`，條件成立後 `break` 結束
+### 範例程式碼
+```python=
+# 3除以5等餘, 3 / 5 -> 0.6
+a, b = 3, 5 # a 除以 b
+ans = "0."  # 先把小數點用字串列出來
+i = 0
+# 當迴圈執行十次
+while i < 10:
+  # 3 -> 30, 乘以10
+  a10 = a * 10
+  # 30 // 7, 取商
+  ans = ans + str(a10 // b)
+  print(ans)
+  # 30 % 7, 取餘
+  a = a10 % b
+  # 如果除盡就結束
+  if a == 0:
+    break
+  i = i + 1
+```
+
+
+## 終極密碼程式
+1. **功能**：模擬數字猜謎遊戲，在指定範圍內逐步縮小範圍直到正確
+2. **重點**：
+    - **邏輯規劃**：
+        - 使用無窮迴圈 `while`，條件成立後 `break` 結束
+### 範例程式碼
+```python=
+# 終極密碼程式
+# 匯入隨機模組
+import random
+# 設定終極密碼的題目範圍
+low, high = 1, 100
+# 隨機跑一個範圍內的答案
+ans = random.randint(low+1, high-1)
+
+
+while True:
+  while True:
+    # 輸入題目內的範圍
+    print("請輸入", low, "-", high, ":")
+    # 猜的數字變成整數型態
+    guess = int(input())
+    # 如果 範圍內 就跳出去
+    if low < guess < high:
+      break
+    else:
+      #如果在範圍外提示不合理
+      print("不合理的輸入")
+  # 根據大小提示在猜一次    
+  if guess > ans:
+    print("猜大了")
+    high = guess
+  elif guess < ans:
+    print("猜小了")
+    low = guess
+  else:
+    print("恭喜猜對")
+    break
+```
+
+
+
+# 章節六
+## 型態
+> **清單(List)**
+- tran[ ]=`[30,50,80,60,90]`
+> **字典**
+- int{ } = `"書名"`:,`"一本書"`
+
+
+## 清單查詢程式
+1. **功能**：查詢清單的元素、範圍及屬性，進行數據篩選
+
+### 範例程式碼
+```python=
+# 清單查詢程式
+# 寫python要符合pythonic美感重要極簡
+scores = [30, 50, 80, 60, 90]
+
+print(sum(scores), max(scores), min(scores))
+print(len(scores))
+print(60 in scores)
+
+# 查詢:查東西[key]
+# 重要!!清單第一個
+print(scores[0])
+# 重要!!清單最後一個
+print(scores[-1])
+# print(scores(len(scores)-1))
+print("scores = [30, 50, 80, 60, 90]")
+# 查詢一段
+# 範圍第二個, 第二個數字不出現
+print(scores[1:3])
+# -1就是最後一個,但他是第二個數字不出現
+print(scores[1:-1])
+# 從[0]開始拿三個[3]
+print(scores[:3])
+# 從第二個到尾
+print(scores[1:])
+
+# 跳號
+# 跳號 0~4, 2個一跳
+print(scores[0:4:2])
+# 跳號 從頭2個一跳
+print(scores[::2])
+# 跳號 從第二個2個一跳
+print(scores[1::2])
+
+# 反向跳號(從右跳到左)
+# 從第五個反向, 反向2個一跳
+print(scores[4:0:-2])
+# 同上,從第五個反向, 反向2個一跳
+print(scores[-1:0:-2])
+# 重要!!清單最後一個往前
+print(scores[::-1])
+```
+
+
+## 查詢幾人及格程式
+1. **功能**：從清單中分數篩選及格人數並統計
+
+### 範例程式碼
+```python=
+# 優化版查詢幾人及格程式
+# 設定清單內五個分數
+scores = [80, 60, 90, 20, 100]
+# 初始化迴圈
+i = 0
+# 初始化計數器
+count = 0
+  # s 是這位的分數
+s = scores[i]
+# 走過所有分數與清單
+for s in scores:
+  # 如果60分就+1次
+  if s >= 60:
+    print("有及格")
+    count = count + 1
+  else: 
+    s < 60
+    print("沒及格")
+print(count)
+```
+
+## 數字/清單加總程式
+1. **功能**：將清單中數字逐一累加
+
+### 範例程式碼
+```python=
+# 1 + 2 + 3 ... + 10 數字加總程式
+# 設定清單要加總數字
+num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# 初始化迴圈
+i = 0
+# 初始化加總
+total = 0
+# s 就是裡面的數字
+s = num[i]
+# 數字在這個迴圈裡面
+for s in num:
+  total = total + s
+  print(total)
+  i = i + 1
+```
+
+## 🔁 重要觀念 - 迴圈 SOP
+> **1. 走過群集(str/list)**
+  - for 名稱 in 群
+> **2. 固定次數型迴圈**
+  - for in range(次)
+> **3. 其他條件迴圈**
+  - while(True+break)
+
+
+## 字典操作程式
+1. **功能**：字典基本操作查詢、新增、修改和刪除
+
+### 範例程式碼
+```python=
+# 字典操作程式
+# 字典就是{key:value}
+# value可以是數字、布林、字串
+# value: 數字直接寫, 字串""雙引號,布林True/False
+
+# person 字典裡面有兩個KEY、兩個value
+person = {
+  "name": "Elwing",
+  "height": 175,
+}
+
+print(person)
+# 名稱-> 字典[key]
+# 查詢字典裡面資訊
+print(person["height"])
+print(person["name"])
+# 新增字典裡面資訊
+person["weight"] = 80
+# 印出 person 字典資訊
+print(person)
+# height = height + 5
+# 更新 person 字典裡面+5
+person["height"] = person["height"] + 5
+# 印出 person 字典資訊
+print(person)
+# 刪除person 字典裡面的name 
+del person["name"]
+print(person)
+```
+
+## 檔案操作相關程式 
+1. **功能**：檔案讀寫操作包括寫入、讀取及關閉
+
+### 範例程式碼
+```python=
+# 專屬功能
+# 
+f = open("a.txt","w", encoding="utf-8")
+# 以前寫法:write(f, "abc")
+# 專屬功能寫法:f.write("abc")
+# 跳脫字元: \n 換行 \t Tab
+
+# 寫入檔案, 內容為abc
+f.write("abc\n")
+f.write("def")
+
+# 以前寫法close(f)
+# 專屬功能寫法:f.close()
+
+# 關閉檔案
+f.close()
+# 讀取main.py檔案後回傳
+f = open("main.py","r", encoding="utf-8")
+# 以前寫法:s = read(f)
+# 專屬功能寫法:s = f.read()
+s = f.read()
+
+# 關閉檔案
+f.close()
+
+print(s)
+```
+
+### 補充資料
+> 官網 - 內建函數
+- [檔案處理 open](https://docs.python.org/zh-tw/3.13/library/functions.html#open)
+
+
+
+## 爬蟲程式 
+1. **功能**：從指定 API 提取資料解析並輸出
+
+### 範例程式碼                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+```python=
+# 爬蟲程式
+# 匯入json模組
+import json
+# 匯入urllib處理模組, 另外命名為req
+import urllib.request as req
+
+url="https://service.taipower.com.tw/data/opendata/apply/file/d007008/001.json"
+# 命名urllib處理模組的req, 使用urlopen打開連結
+f = req.urlopen(url)
+# 檔案讀取資訊
+s = f.read()
+# 型態查詢:原始bytes 
+print(type(s))
+# 使用jsons轉換去序列化變python物件
+pics = json.loads(s)
+# pics = json.load(s)
+print(type(pics))
+
+# 型態查詢:字串str
+print(type("abc"))
+# 型態查詢:整數int
+print(type(3))
+# 型態查詢:浮點數float
+print(type(3.5))
+
+
+for p in pics:
+  # 確認目前p的型態
+  # print(type(p))
+  # 印出p的標題
+  print(p["title"])
+  # 設定網址前面在加上https字串
+  img = "https:" + p["high_res_url"]
+  # 印出網址
+  print(img)
+  # 印出分隔線*30
+  print("-"*30)
+```
+### 補充資料
+> 官網 - 內建函數
+- [url 處理 urllib](https://docs.python.org/zh-tw/3.13/library/urllib.html#module-urllib)
+> 官網 - 內建函數
+- [編碼解碼處理 json](https://docs.python.org/zh-tw/3.13/library/json.html)
